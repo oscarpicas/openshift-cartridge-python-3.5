@@ -50,7 +50,8 @@ function build_python() {
         fi
 
 	cd $tdir/python
-	./configure --prefix=${pdir}/usr/ --with-ensurepip=install
+	./configure --prefix=${pdir}usr/
+	make -j$cpus
 	make install -j$cpus
 
 	if [[ $ver == 3* ]]; then
