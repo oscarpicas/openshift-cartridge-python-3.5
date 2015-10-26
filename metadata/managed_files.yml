@@ -1,0 +1,11 @@
+locked_files:
+- bin/
+- bin/*
+- env/
+- env/*
+- usr/
+- usr/*
+processed_templates:
+- '**/*.erb' 
+snapshot_exclusions:
+- python/*

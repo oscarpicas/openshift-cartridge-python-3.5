@@ -1,0 +1,101 @@
+#!/bin/bash -eu
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+case $1 in 
+	-v|--version)	ver="$2"
+esac
+
+pdir=$OPENSHIFT_PYTHON_DIR
+vdir=$OPENSHIFT_PYTHON_VENV_DIR
+tdir=$OPENSHIFT_TMP_DIR
+
+function report_status() {
+	if [ $1 -ne 0 ]; then
+		client_error "$2 failed."
+		exit 1
+	else
+		client_result "$2 done."
+	fi
+}
+
+function is_python_installed() {
+	if [ -f $pdir/usr/bin/python3 ]; then
+		if [[ "$( $pdir/usr/bin/python3 -V 2>&1 )" == "Python $ver" ]]; then
+			return 0
+		elif [[ "$( $pdir/usr/bin/python -V 2>&1 )" == "Python $ver" ]]; then
+			return 0
+		fi
+	fi
+	return 1
+}
+
+function build_python() {
+	client_result "Installing Python $ver"
+
+	# Get the number of processors
+	if [ -f /proc/cpuinfo ]; then
+		cpus=$( grep -c ^processor /proc/cpuinfo )
+	else
+		cpus=1
+	fi
+	
+	curl -L -o $tdir/tmp.tgz https://www.python.org/ftp/python/$ver/Python-$ver.tgz
+	mkdir -p $tdir/python
+	tar xvzf $tdir/tmp.tgz --strip-component=1 -C $tdir/python
+	
+        # if a different version exists, remove it first
+        if [ -d $pdir/usr/bin ]; then
+                rm -rf $pdir/usr
+        fi
+
+	cd $tdir/python
+	./configure --prefix=${pdir}/usr/ --with-ensurepip=install
+	make install -j$cpus
+
+	if [[ $ver == 3* ]]; then
+		$pdir/usr/bin/pip3 install virtualenv
+	else
+		$pdir/usr/bin/pip install virtualenv
+	fi
+
+	report_status $? "Installation" 
+
+	rm -rf $tdir/python
+	rm -f $tdir/tmp.tgz
+}
+
+function is_virt_installed() {
+	if [ -f $vdir/bin/activate ]; then
+		return 0
+	fi
+	return 1
+}
+
+function create_virt() {
+
+	if [ -f $pdir/usr/bin/virtualenv ]; then
+		$pdir/usr/bin/virtualenv --clear --no-wheel $vdir
+	else
+		client_error "virtualenv not installed"
+	fi
+}
+
+if ! is_python_installed; then
+	build_python
+	create_virt
+else
+	client_result "Python $ver already installed."
+fi
+
+if ! is_virt_installed; then
+	create_virt
+else
+	client_result "Virtual environment already installed."
+fi
+
+# pip stores cache in .cache an logs in .pip.
+# Create directories, change ownership and SELinux security context
+mkdir -p $OPENSHIFT_HOMEDIR/{.cache,.pip}
+chown $OPENSHIFT_APP_UUID.$OPENSHIFT_APP_UUID -R $OPENSHIFT_HOMEDIR/.pip $OPENSHIFT_HOMEDIR/.cache
+
