@@ -86,16 +86,16 @@ function create_virt() {
 
 if ! is_python_installed; then
 	build_python
-#	create_virt
+	create_virt
 else
 	client_result "Python $ver already installed."
 fi
 
-#if ! is_virt_installed; then
-#	create_virt
-#else
-#	client_result "Virtual environment already installed."
-#fi
+if ! is_virt_installed; then
+	create_virt
+else
+	client_result "Virtual environment already installed."
+fi
 
 # pip stores cache in .cache an logs in .pip.
 # Create directories, change ownership and SELinux security context
