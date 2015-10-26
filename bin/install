@@ -10,6 +10,8 @@ pdir=$OPENSHIFT_PYTHON_DIR
 vdir=$OPENSHIFT_PYTHON_VENV_DIR
 tdir=$OPENSHIFT_TMP_DIR
 
+mkdir -p $vdir
+
 function report_status() {
 	if [ $1 -ne 0 ]; then
 		client_error "$2 failed."
