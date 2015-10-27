@@ -101,5 +101,5 @@ rm -f $tdir/tmp.tgz
 # pip stores cache in .cache an logs in .pip.
 # Create directories, change ownership and SELinux security context
 mkdir -p $OPENSHIFT_HOMEDIR/{.cache,.pip}
-chown $OPENSHIFT_APP_UUID.$OPENSHIFT_APP_UUID -R $OPENSHIFT_HOMEDIR/.pip $OPENSHIFT_HOMEDIR/.cache
+chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R $OPENSHIFT_HOMEDIR/.pip $OPENSHIFT_HOMEDIR/.cache
 
