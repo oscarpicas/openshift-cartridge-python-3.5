@@ -63,9 +63,6 @@ function build_python() {
 	fi
 
 	report_status $? "Installation" 
-
-	rm -rf $tdir/python
-	rm -f $tdir/tmp.tgz
 }
 
 function is_virt_installed() {
