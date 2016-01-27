@@ -22,7 +22,7 @@ function report_status() {
 }
 
 function is_python_installed() {
-	if [ -f $pdir/usr/bin/python3 ]; then
+	if [ -f $pdir/usr/bin/python3 -o -f $pdir/usr/bin/python ]; then
 		if [[ "$( $pdir/usr/bin/python3 -V 2>&1 )" == "Python $ver" ]]; then
 			return 0
 		elif [[ "$( $pdir/usr/bin/python -V 2>&1 )" == "Python $ver" ]]; then
@@ -56,11 +56,8 @@ function build_python() {
 	make -j$cpus
 	make install -j$cpus
 
-	if [[ $ver == 3* ]]; then
-		$pdir/usr/bin/pip3 install virtualenv
-	else
-		$pdir/usr/bin/pip install virtualenv
-	fi
+	$pdir/usr/bin/python -m ensurepip
+	$pdir/usr/bin/pip install virtualenv
 
 	report_status $? "Installation"
 }
