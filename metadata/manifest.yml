@@ -1,27 +1,25 @@
 ---
 Name: python
 Cartridge-Short-Name: PYTHON
-Display-Name: Python 3.5 
-Description: 'Python is a general-purpose, high-level programming language whose design
-  philosophy emphasizes code readability. Popular development frameworks include:
-  Django, Bottle, Pylons, Zope and TurboGears.'
+Display-Name: Only Python
+Description: 'An embedded cartridge that provides only python, nothing else.'
 Version: '3.5.0'
-License: The Python License, version 3.5.0
+Versions: ['3.5.0', '2.7.11']
+License: The Python License
 License-Url: http://docs.python.org/3/license.html
 Vendor: python.org
-Cartridge-Version: 0.0.1
+Cartridge-Version: 0.0.2
 Cartridge-Vendor: praisebetoscience
 Categories:
 - service
 - python
 - embedded
-Website: https://github.com/praisebetoscience/openshift-python-cartridge
+Website: https://github.com/praisebetoscience/openshift-cartridge-python-3.5
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:
-- python-3.5
 - python
-Publishes: 
+Publishes:
 Subscribes:
   set-env:
     Type: ENV:*
@@ -32,3 +30,18 @@ Subscribes:
 Scaling:
   Min: 1
   Max: -1
+Version-Overrides:
+  '2.7.11':
+    Display-Name: Python 2.7
+    License: The Python License, version 2.7
+    Provides:
+    - python-2.7
+    - python
+    - python(version) = 2.7
+  '3.5.0':
+    Display-Name: Python 3.5
+    License: The Python License, version 3.5
+    Provides:
+    - python-3.5
+    - python
+    - python(version) = 3.5
