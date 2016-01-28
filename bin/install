@@ -42,16 +42,16 @@ function build_python() {
 		cpus=1
 	fi
 	
-	curl -L -o $tdir/tmp.tgz https://www.python.org/ftp/python/$ver/Python-$ver.tgz
-	mkdir -p $tdir/python
-	tar xvzf $tdir/tmp.tgz --strip-component=1 -C $tdir/python
+	curl -C - -L -o $tdir/$ver.tgz https://www.python.org/ftp/python/$ver/Python-$ver.tgz
+	mkdir -p $tdir/python-$ver
+	tar xvzf $tdir/$ver.tgz --strip-component=1 -C $tdir/python-$ver
 	
 	# if a different version exists, remove it first
 	if [ -d $pdir/usr/bin ]; then
 		rm -rf $pdir/usr
 	fi
 
-	cd $tdir/python
+	cd $tdir/python-$ver
 	./configure --prefix=${pdir}usr/
 	make -j$cpus
 	make install -j$cpus
@@ -91,8 +91,8 @@ else
 fi
 
 # Clean up temp directory
-rm -rf $tdir/python
-rm -f $tdir/tmp.tgz
+rm -rf $tdir/python-$ver
+rm -f $tdir/$ver.tgz
 
 # pip stores cache in .cache an logs in .pip.
 # Create directories, change ownership and SELinux security context
