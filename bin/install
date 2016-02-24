@@ -53,7 +53,7 @@ function build_python() {
 
 	cd $tdir/python-$ver
 	./configure --prefix=${pdir}usr/
-#	make -j$cpus
+	make -j$cpus > /dev/null
 #	make install -j$cpus
 
 #	$pdir/usr/bin/python -m ensurepip
