@@ -10,7 +10,7 @@ License: The Python License
 License-Url: http://docs.python.org/3/license.html
 Vendor: python.org
 Cartridge-Version: 0.0.2
-Cartridge-Vendor: Grief, praisebetoscience
+Cartridge-Vendor: praisebetoscience
 Categories:
 - service
 - python
