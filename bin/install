@@ -51,10 +51,10 @@ function build_python() {
 		rm -rf $pdir/usr
 	fi
 
-	cd $tdir/python-$ver
-	./configure --prefix=${pdir}usr/
-	make -j$cpus
-	make install -j$cpus
+#	cd $tdir/python-$ver
+#	./configure --prefix=${pdir}usr/
+#	make -j$cpus
+#	make install -j$cpus
 
 #	$pdir/usr/bin/python -m ensurepip
 #	$pdir/usr/bin/pip install virtualenv
