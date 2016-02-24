@@ -84,11 +84,11 @@ else
 	client_result "Python $ver already installed."
 fi
 
-if ! is_virt_installed; then
-	create_virt
-else
-	client_result "Virtual environment already installed."
-fi
+#if ! is_virt_installed; then
+#	create_virt
+#else
+#	client_result "Virtual environment already installed."
+#fi
 
 # Clean up temp directory
 rm -rf $tdir/python-$ver
