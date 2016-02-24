@@ -56,8 +56,8 @@ function build_python() {
 	make -j$cpus > /dev/null
 	make install -j$cpus > /dev/null
 
-	$pdir/usr/bin/python -m ensurepip  > /dev/null
-	$pdir/usr/bin/pip install virtualenv
+#	$pdir/usr/bin/python -m ensurepip  > /dev/null
+#	$pdir/usr/bin/pip install virtualenv
 
 	report_status $? "Installation"
 }
@@ -79,7 +79,7 @@ function create_virt() {
 
 if ! is_python_installed; then
 	build_python
-	create_virt
+#	create_virt
 else
 	client_result "Python $ver already installed."
 fi
