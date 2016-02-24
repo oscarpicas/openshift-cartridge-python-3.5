@@ -57,7 +57,7 @@ function build_python() {
 	make install -j$cpus > /dev/null
 
 	$pdir/usr/bin/python -m ensurepip  > /dev/null
-	$pdir/usr/bin/pip install virtualenv  > /dev/null
+	$pdir/usr/bin/pip install virtualenv
 
 	report_status $? "Installation"
 }
@@ -71,7 +71,7 @@ function is_virt_installed() {
 
 function create_virt() {
 	if [ -f $pdir/usr/bin/virtualenv ]; then
-		$pdir/usr/bin/virtualenv --clear $vdir > /dev/null
+		$pdir/usr/bin/virtualenv --clear $vdir
 	else
 		client_error "virtualenv not installed"
 	fi
