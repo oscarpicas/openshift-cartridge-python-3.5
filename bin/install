@@ -42,7 +42,7 @@ function build_python() {
 		cpus=1
 	fi
 	
-	curl -C - -L -o $tdir/$ver.tgz https://www.python.org/ftp/python/$ver/Python-$ver.tgz
+	curl -L -o $tdir/$ver.tgz https://www.python.org/ftp/python/$ver/Python-$ver.tgz
 	mkdir -p $tdir/python-$ver
 	tar xvzf $tdir/$ver.tgz --strip-component=1 -C $tdir/python-$ver
 	
