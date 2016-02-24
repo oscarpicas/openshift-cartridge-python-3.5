@@ -10,12 +10,12 @@ License: The Python License
 License-Url: http://docs.python.org/3/license.html
 Vendor: python.org
 Cartridge-Version: 0.0.2
-Cartridge-Vendor: praisebetoscience
+Cartridge-Vendor: Grief, praisebetoscience
 Categories:
 - service
 - python
 - embedded
-Website: https://github.com/praisebetoscience/openshift-cartridge-python-3.5
+Website: https://github.com/Grief/openshift-cartridge-python-3.5
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:

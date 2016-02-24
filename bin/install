@@ -54,7 +54,7 @@ function build_python() {
 	cd $tdir/python-$ver
 	./configure --prefix=${pdir}usr/
 	make -j$cpus > /dev/null
-#	make install -j$cpus
+	make install -j$cpus > /dev/null
 
 #	$pdir/usr/bin/python -m ensurepip
 #	$pdir/usr/bin/pip install virtualenv
