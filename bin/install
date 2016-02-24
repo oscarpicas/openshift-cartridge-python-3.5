@@ -56,7 +56,7 @@ function build_python() {
 	make -j$cpus > /dev/null
 	make install -j$cpus > /dev/null
 
-#	$pdir/usr/bin/python -m ensurepip  > /dev/null
+	$pdir/usr/bin/python -m ensurepip  > /dev/null
 #	$pdir/usr/bin/pip install virtualenv
 
 	report_status $? "Installation"
