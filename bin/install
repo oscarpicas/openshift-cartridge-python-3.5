@@ -71,7 +71,7 @@ function is_virt_installed() {
 
 function create_virt() {
 	if [ -f $pdir/usr/bin/virtualenv ]; then
-		$pdir/usr/bin/virtualenv --clear $vdir
+		$pdir/usr/bin/virtualenv --clear $vdir > /dev/null
 	else
 		client_error "virtualenv not installed"
 	fi
