@@ -84,18 +84,17 @@ else
 	client_result "Python $ver already installed."
 fi
 
-if ! is_virt_installed; then
-	create_virt
-else
-	client_result "Virtual environment already installed."
-fi
-
-# Clean up temp directory
-rm -rf $tdir/python-$ver
-rm -f $tdir/$ver.tgz
-
-# pip stores cache in .cache an logs in .pip.
-# Create directories, change ownership and SELinux security context
-mkdir -p $OPENSHIFT_HOMEDIR/{.cache,.pip}
-chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R $OPENSHIFT_HOMEDIR/.pip $OPENSHIFT_HOMEDIR/.cache
-
+#if ! is_virt_installed; then
+#	create_virt
+#else
+#	client_result "Virtual environment already installed."
+#fi
+#
+## Clean up temp directory
+#rm -rf $tdir/python-$ver
+#rm -f $tdir/$ver.tgz
+#
+## pip stores cache in .cache an logs in .pip.
+## Create directories, change ownership and SELinux security context
+#mkdir -p $OPENSHIFT_HOMEDIR/{.cache,.pip}
+#chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R $OPENSHIFT_HOMEDIR/.pip $OPENSHIFT_HOMEDIR/.cache
