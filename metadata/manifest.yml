@@ -15,7 +15,8 @@ Categories:
 - service
 - python
 - embedded
-Website: https://github.com/Grief/openshift-cartridge-python-3.5
+- web_framework
+Website: https://github.com/oscarpicas/openshift-cartridge-python-3.5
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:
@@ -46,4 +47,4 @@ Version-Overrides:
     - python-3.5
     - python
     - python(version) = 3.5
-Source-Url: https://github.com/Grief/openshift-cartridge-python-3.5/archive/master.zip
+Source-Url: https://github.com/oscarpicas/openshift-cartridge-python-3.5/archive/master.zip
